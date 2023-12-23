@@ -11,20 +11,22 @@ function createChart(el, xRange, yRange) {
           name: 'Graph',
           lineWidth: 2,
         }],
-        xRange: { min: 0, max: xRange ?? 100 },
-        yRange: { min: 0, max: yRange ?? 100 },
+        xRange: { min: 0, max: xRange},
+        yRange: { min: 0, max: yRange},
         legend: false, 
       });
       return chart
 }
 
 function GraphComponent({ xRange, yRange }) {
+  const xAxis = xRange ?? 100;
+  const yAxis = yRange ?? 100;
   const [isDownload, setIsDownload] = useState(false);
   const chartRef = useRef(null)
   // const canvasRef = useRef(null);
 
   useEffect(() => {
-    const chart = createChart(chartRef.current, xRange, yRange)
+    const chart = createChart(chartRef.current, xAxis, yAxis)
     return () => chart.dispose()
   }, [xRange, yRange]);
 
